@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  certgen:
+    build:
+      context: .
+      dockerfile: Dockerfile.certgen
+    volumes:
+      - certs:/certs
+
+  microservice:
+    build: .
+    ports:
+      - "127.0.0.1:8041:8041"
+    volumes:
+      - certs:/app/certs
+    depends_on:
+      - certgen
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://localhost:8041/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  wiremock:
+    image: wiremock/wiremock:2.32.0
+    ports:
+      - "127.0.0.1:9091:9091"
+    volumes:
+      - certs:/home/wiremock
+    depends_on:
+      - certgen
+    command:
+      - --https-port=9091
+      - --https-keystore=/home/wiremock/wiremock-keystore.p12
+      - --keystore-password=changeit
+      - --https-truststore=/home/wiremock/wiremock-keystore.p12
+      - --truststore-password=changeit
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://localhost:9091/__admin/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  certs:
