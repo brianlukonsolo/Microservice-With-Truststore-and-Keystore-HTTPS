@@ -53,13 +53,13 @@
       <executions>
           <execution>
               <id>certgen</id>
-              <phase>package</phase>
+              <phase>compile</phase>
               <goals>
                   <goal>up</goal>
               </goals>
               <configuration>
                   <composeFile>${project.basedir}/docker-compose-certgen.yml</composeFile>
-                  <detachedMode>false</detachedMode>
+                  <detachedMode>true</detachedMode>
               </configuration>
           </execution>
           <execution>
@@ -76,7 +76,7 @@
           </execution>
           <execution>
               <id>down-certgen</id>
-              <phase>clean</phase>
+              <phase>package</phase>
               <goals>
                   <goal>down</goal>
               </goals>
