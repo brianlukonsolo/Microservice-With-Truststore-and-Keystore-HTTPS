@@ -114,8 +114,8 @@
                         <fileset>
                             <directory>${project.basedir}/certs</directory>
                             <includes>
-                                <include>microservice-keystore.p12</include>
-                                <include>wiremock-keystore.p12</include>
+                                <include>microservice-keystore.jks</include>
+                                <include>wiremock-keystore.jks</include>
                             </includes>
                         </fileset>
                     </filesets>
