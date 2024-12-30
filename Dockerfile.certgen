@@ -1,9 +1,3 @@
 FROM openjdk:17-jdk-slim
 
-WORKDIR /certs
-
-COPY generate-certs.sh /certs/
-
-RUN chmod +x /certs/generate-certs.sh
-
 CMD ["/certs/generate-certs.sh"]

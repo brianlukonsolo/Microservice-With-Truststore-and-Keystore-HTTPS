@@ -1,0 +1,7 @@
+services:
+  certgen:
+    build:
+      context: .
+      dockerfile: Dockerfile.certgen
+    volumes:
+      - ./certs:/certs
