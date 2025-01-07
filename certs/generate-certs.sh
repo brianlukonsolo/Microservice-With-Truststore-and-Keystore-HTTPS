@@ -12,6 +12,10 @@ keytool -exportcert -alias microservice -keystore microservice-keystore.jks -sto
 # Export WireMock certificate
 keytool -exportcert -alias wiremock -keystore wiremock-keystore.jks -storepass password -file wiremock.cer
 
+# Create truststore
+keytool -importcert -alias microservice -file microservice.cer -keystore truststore.jks -storepass password -noprompt
+keytool -importcert -alias wiremock -file wiremock.cer -keystore truststore.jks -storepass password -noprompt
+
 # Import WireMock certificate into microservice keystore
 keytool -importcert -alias wiremock -file wiremock.cer -keystore microservice-keystore.jks -storepass password -noprompt
 
@@ -21,5 +25,5 @@ keytool -importcert -alias microservice -file microservice.cer -keystore wiremoc
 # Clean up temporary certificate files
 rm microservice.cer wiremock.cer
 
-# Copy certificates to certs volume directory
+# Copy certificates and truststore to certs volume directory
 cp ./*.jks /certs/
