@@ -116,6 +116,8 @@
                             <includes>
                                 <include>microservice-keystore.jks</include>
                                 <include>wiremock-keystore.jks</include>
+                                <include>microservice-truststore.jks</include>
+                                <include>wiremock-truststore.jks</include>
                             </includes>
                         </fileset>
                     </filesets>
