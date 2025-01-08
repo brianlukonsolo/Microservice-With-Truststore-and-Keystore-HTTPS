@@ -5,6 +5,8 @@ services:
       - "127.0.0.1:8041:8041"
     volumes:
       - ./certs:/app/certs
+    depends_on:
+      - wiremock
 
   wiremock:
     build:

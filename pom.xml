@@ -114,6 +114,8 @@
                         <fileset>
                             <directory>${project.basedir}/certs</directory>
                             <includes>
+                                <include>custom-ca-keystore.jks</include>
+                                <include>custom-ca.crt</include>
                                 <include>microservice-keystore.jks</include>
                                 <include>wiremock-keystore.jks</include>
                                 <include>microservice-truststore.jks</include>
